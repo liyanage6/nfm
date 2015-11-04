@@ -1,4 +1,4 @@
-<?php $this->titre = 'NFM'; ?>
+<?php $this->titre = 'Equipes'; ?>
 
 <?php foreach ($equipes as $equipe): ?>
     <article>

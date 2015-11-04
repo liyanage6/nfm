@@ -8,10 +8,10 @@
 <body>
     <div class="container">
         <div id="header" class="jumbotron">
-            <h2>Football Manager </h2>
+            <a href="index.php"><h2>Football Manager </h2></a>
         </div>
         <div id="menu" class="col-md-3">
-            <h3>Les annonces</h3>
+            <h3>Menu</h3>
             <ul class="nav nav-pills nav-stacked">
                 <li><a href="<?= "index.php" ?>">Accueil</a></li>
                 <li><a href="<?= "index.php?action=addEquipe" ?>">Ajouter une equipe</a></li>
@@ -20,7 +20,7 @@
         </div>
         <div id="content" class="col-md-9">
             <header>
-                <a href="index.php"><h1 id="titreBlog">NFM</h1></a>
+                <h1><?= $titre ?></h1>
                 <p>Bienvenue sur football manager low-cost.</p>
             </header>
             <div id="contenu">

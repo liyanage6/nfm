@@ -5,7 +5,6 @@ require_once 'Modele.php';
 class Equipe extends Modele {
 
     private $nom;
-    private $nbjoueur;
     private $ecusson;
 
     /**
@@ -27,22 +26,6 @@ class Equipe extends Modele {
     /**
      * @return mixed
      */
-    public function getNbjoueur()
-    {
-        return $this->nbjoueur;
-    }
-
-    /**
-     * @param mixed $nbjoueur
-     */
-    public function setNbjoueur($nbjoueur)
-    {
-        $this->nbjoueur = $nbjoueur;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getEcusson()
     {
         return $this->ecusson;
@@ -58,16 +41,9 @@ class Equipe extends Modele {
 
     public function getEquipes()
     {
-        $sql = 'SELECT id_equipe, nom FROM equipe ORDER BY id_equipe DESC ';
+        $sql = 'SELECT id_equipe, nom FROM equipe ORDER BY id_equipe ASC ';
         $equipes = $this->exeReq($sql);
         return $equipes;
-    }
-
-    public function getShowEquipe($idEquipe)
-    {
-        $sql = 'SELECT id_joueur, nom, poste FROM joueur WHERE id_equipe = '.$_GET[$idEquipe];
-        $equipe = $this->exeReq($sql, array($idEquipe));
-        return $equipe;
     }
 
     /**
@@ -80,10 +56,10 @@ class Equipe extends Modele {
         return $nbjoueur;
     }
 
-    public function addEquipe($nomEquipe, $ecusson)
+    public function addEquipe($nomEquipe)
     {
-        $sql = 'insert into equipe(nom,ecusson)'.'value(?,?)';
-        $this->exeReq($sql, array($nomEquipe, $ecusson));
+        $sql = 'INSERT INTO equipe (nom) VALUES (?)';
+        $this->exeReq($sql, array($nomEquipe));
     }
 
 }

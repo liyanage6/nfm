@@ -125,10 +125,25 @@ class Joueur extends Modele {
 
     public function getJoueurs($idEquipe)
     {
-        $sql = 'SELECT id_joueur, nom, poste, attaque, milieu, defense, titulaire, remplaçant FROM joueur';
+        $sql = 'SELECT id_joueur, id_equipe, nom, poste, attaque, milieu, defense, tituRempl FROM joueur WHERE id_equipe='.$_GET['id'];
         $joueur = $this->exeReq($sql, array($idEquipe));
 
         return $joueur;
+    }
+
+    public function addJoueur($nomJoueur, $club, $poste, $attaque, $milieu, $defense, $tituRempl )
+    {
+        $sql = 'INSERT INTO joueur (nom, club, poste, attaque, milieu, defense, tituRempl) VALUES (:nom, :club, :poste,
+:attaque, :milieu, :defense, :tituRempl) ';
+        $this->exeReq($sql,array(
+            ':nom'        => $nomJoueur,
+            ':club'       => $club,
+            ':poste'      => $poste,
+            ':attaque'    => $attaque,
+            ':milieu'     => $milieu,
+            ':defense'    => $defense,
+            ':tituRempl'  => $tituRempl,
+        ));
     }
 
 }

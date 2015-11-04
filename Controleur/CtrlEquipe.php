@@ -7,9 +7,11 @@ require_once 'Vue/Vue.php';
 class CtrlEquipe {
 
     private $joueurs;
+    private $newEquipe;
     private $equipe;
 
     public function __construct() {
+        $this->newEquipe = new Equipe();
         $this->equipe = new Equipe();
         $this->joueurs = new Joueur();
     }
@@ -17,13 +19,21 @@ class CtrlEquipe {
     public function showEquipe($idEquipe) {
         $joueurs = $this->joueurs->getJoueurs($idEquipe);
         $vue = new Vue("Joueur");
-        $vue->generer(array('joueurs' => $joueurs));
+        $vue->generer(array(
+            'joueurs' => $joueurs,
+        ));
     }
 
-    public function addEquipe($nomEquipe,$ecusson) {
-        $this->equipe->addEquipe($nomEquipe,$ecusson);
+    public function equipeForm() {
         $vue = new Vue("AddEquipe");
-        $vue->generer();
+        $vue->generer(array());
+    }
+
+    public function addE($nomEquipe) {
+        $this->newEquipe->addEquipe($nomEquipe);
+        $equipes = $this->equipe->getEquipes();
+        $vue = new Vue("Accueil");
+        $vue->generer(array('equipes' => $equipes));
     }
 }
 

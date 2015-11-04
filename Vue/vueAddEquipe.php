@@ -1,5 +1,8 @@
+<?php $this->titre = "Equipe"; ?>
 
-<form method="post" action="index.php?action=ajoutBillet" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-    <label>Nom</label><input id="nom" name="nom" type="text" placeholder="Nom du billet" required /></br>
+<form method="post" action="?action=addE" enctype="multipart/form-data">
+    <legend>Ajouter une equipe:</legend>
+    <label>Nom</label>
+    <input id="nomEquipe" name="nomEquipe" type="text" placeholder="Nom de l'equipe" required /><br>
     <input type="submit" value="Ajouter"/>
 </form>

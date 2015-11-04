@@ -6,7 +6,7 @@ abstract class Modele {
 
     protected function exeReq($sql, $params = null)
     {
-        if ($params = null)
+        if ($params == null)
         {
             $resultat = $this->getBdd()->query($sql);
         }
