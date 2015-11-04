@@ -58,17 +58,32 @@ class Equipe extends Modele {
 
     public function getEquipes()
     {
-        $sql = 'SELECT id_equipe, nom, nbjoueur FROM equipe ORDER BY id_equipe DESC ';
+        $sql = 'SELECT id_equipe, nom FROM equipe ORDER BY id_equipe DESC ';
         $equipes = $this->exeReq($sql);
         return $equipes;
+    }
+
+    public function getShowEquipe($idEquipe)
+    {
+        $sql = 'SELECT id_joueur, nom, poste FROM joueur WHERE id_equipe = '.$_GET[$idEquipe];
+        $equipe = $this->exeReq($sql, array($idEquipe));
+        return $equipe;
     }
 
     /**
      *  Trouver comment effectuer le compte sur une seul et mm equipe
      */
-    public function nbJoueur()
+    public function nbJoueur($idEquipe)
     {
-        $sql = 'SELECT COUNT(id_joueur) FROM joueur WHERE id_equipe  ';
+        $sql = 'SELECT COUNT(id_joueur) FROM joueur WHERE id_equipe = '.$_GET[$idEquipe];
+        $nbjoueur = $this->exeReq($sql, array($idEquipe));
+        return $nbjoueur;
+    }
+
+    public function addEquipe($nomEquipe, $ecusson)
+    {
+        $sql = 'insert into equipe(nom,ecusson)'.'value(?,?)';
+        $this->exeReq($sql, array($nomEquipe, $ecusson));
     }
 
 }

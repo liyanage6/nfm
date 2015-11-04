@@ -9,7 +9,7 @@ class Vue
         $this->fichier = "Vue/vue".$action.".php";
     }
 
-    public function generer($donnee) {
+    public function generer($donnee = null) {
         $contenu = $this->genererFichier($this->fichier, $donnee);
         $vue = $this->genererFichier('Vue/gabarit.php', array(
             'titre' => $this->titre,

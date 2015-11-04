@@ -30,6 +30,11 @@ class Router
                         throw new Exception("Id de l'equipe n'est pas défini");
                     }
                 }
+                elseif ($_GET['action'] = 'addEquipe')
+                {
+                    $this->ctrlEquipe->addEquipe($nomEquipe, $ecusson);
+                }
+
             }
             else {
                 $this->ctrlAccueil->accueil();

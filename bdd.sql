@@ -18,7 +18,6 @@ CREATE TABLE `joueur` (
 CREATE TABLE `equipe` (
 	`id_equipe` INT(4) NOT NULL AUTO_INCREMENT,
 	`nom` VARCHAR(100) NOT NULL,
-	`nbjoueur` INT(10) NOT NULL,
   `ecusson` VARCHAR(255) NOT NULL,
 	PRIMARY KEY (`id_equipe`)
 )

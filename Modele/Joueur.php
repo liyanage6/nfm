@@ -125,7 +125,7 @@ class Joueur extends Modele {
 
     public function getJoueurs($idEquipe)
     {
-        $sql = 'SELECT id_joueur, nom, poste, attaque, milieu, defense, titulaire, remplaçant FROM joueur ORDER BY DESC';
+        $sql = 'SELECT id_joueur, nom, poste, attaque, milieu, defense, titulaire, remplaçant FROM joueur';
         $joueur = $this->exeReq($sql, array($idEquipe));
 
         return $joueur;
