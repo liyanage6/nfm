@@ -8,8 +8,7 @@ class Joueur extends Modele {
     private $attaque;
     private $milieu;
     private $defense;
-    private $titulaire;
-    private $remplaçant;
+    private $tituRempl;
 
     /**
      * @return mixed
@@ -94,33 +93,17 @@ class Joueur extends Modele {
     /**
      * @return mixed
      */
-    public function getTitulaire()
+    public function getTituRempl()
     {
-        return $this->titulaire;
+        return $this->tituRempl;
     }
 
     /**
-     * @param mixed $titulaire
+     * @param mixed $tituRempl
      */
-    public function setTitulaire($titulaire)
+    public function setTituRempl($tituRempl)
     {
-        $this->titulaire = $titulaire;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRemplaçant()
-    {
-        return $this->remplaçant;
-    }
-
-    /**
-     * @param mixed $remplaçant
-     */
-    public function setRemplaçant($remplaçant)
-    {
-        $this->remplaçant = $remplaçant;
+        $this->tituRempl = $tituRempl;
     }
 
     public function getJoueurs($idEquipe)
@@ -131,19 +114,44 @@ class Joueur extends Modele {
         return $joueur;
     }
 
-    public function addJoueur($nomJoueur, $club, $poste, $attaque, $milieu, $defense, $tituRempl )
+    public function getPlayerName()
     {
-        $sql = 'INSERT INTO joueur (nom, club, poste, attaque, milieu, defense, tituRempl) VALUES (:nom, :club, :poste,
-:attaque, :milieu, :defense, :tituRempl) ';
+        $sql = 'SELECT nom FROM joueur';
+        $j = $this->exeReq($sql);
+        $playerName= $j->fetchAll();
+        //var_dump($joueur);
+        return $playerName;
+    }
+
+    public function addJoueur($nomJoueur, $id_equipe, $poste, $attaque, $milieu, $defense, $tituRempl )
+    {
+        $sql = 'INSERT INTO joueur (nom, id_equipe, poste, attaque, milieu, defense, tituRempl) VALUES (:nom, :id_equipe, :poste,:attaque, :milieu, :defense, :tituRempl) ';
         $this->exeReq($sql,array(
             ':nom'        => $nomJoueur,
-            ':club'       => $club,
+            ':id_equipe'  => $id_equipe,
             ':poste'      => $poste,
             ':attaque'    => $attaque,
             ':milieu'     => $milieu,
             ':defense'    => $defense,
             ':tituRempl'  => $tituRempl,
         ));
+    }
+
+    public function nbJoueursForm()
+    {
+        $sql = 'SELECT COUNT(id_joueur) FROM joueur WHERE id_equipe = '.$_POST['id_equipe'];
+        $nb = $this->exeReq($sql);
+        $nbJoueursForm = $nb->fetch();
+
+        return $nbJoueursForm[0];
+    }
+
+    public function getCountAllPlayer()
+    {
+        $sql = 'SELECT COUNT(id_joueur) FROM joueur';
+        $gap = $this->exeReq($sql);
+        $allPlayer = $gap->fetch();
+        return $allPlayer[0];
     }
 
 }

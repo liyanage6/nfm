@@ -1,5 +1,7 @@
 <?php $this->titre = 'Joueurs '; ?>
 
+<p>Nombre de joueurs : <?php echo $nbJoueurs["COUNT(id_joueur)"] ?> </p>
+
 <?php foreach ($joueurs as $joueur): ?>
     <article>
         <header>
@@ -12,4 +14,3 @@
         </header>
     </article>
 <?php endforeach; ?>
-

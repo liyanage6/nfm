@@ -7,17 +7,17 @@
     <input id="nomJoueur" name="nomJoueur" type="text" placeholder="Nom du joueur" required /><br>
 
     <label>Club</label>
-    <select name="club" id="club">
+    <select name="id_equipe" id="id_equipe">
         <?php foreach ($equipes as $equipe): ?>
-            <option value="<?= $equipe['nom'] ?>"><?= $equipe['nom'] ?></option>
+            <option value="<?= $equipe['id_equipe'] ?>"><?= $equipe['nom'] ?></option>
         <?php endforeach; ?>
     </select><br>
 
     <label>Poste</label>
     <select name="poste" id="poste">
-        <option value="attaque">Attaquant</option>
-        <option value="milieu">Milieu</option>
-        <option value="defense">Défense</option>
+        <option value="Attaquant">Attaquant</option>
+        <option value="Milieu">Milieu</option>
+        <option value="Defense">Défense</option>
     </select><br>
 
     Attaque: <input id="attaque" name="attaque" type="number" min="1" max="99"><br>

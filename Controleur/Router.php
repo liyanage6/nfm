@@ -52,7 +52,7 @@ class Router
                 elseif ($_GET['action'] == 'addJ')
                 {
                     $nomJoueur = $this->getParameter($_POST, 'nomJoueur');
-                    $club = $this->getParameter($_POST, 'club');
+                    $club = $this->getParameter($_POST, 'id_equipe');
                     $poste = $this->getParameter($_POST, 'poste');
                     $attaque = $this->getParameter($_POST, 'attaque');
                     $milieu = $this->getParameter($_POST, 'milieu');

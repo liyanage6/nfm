@@ -18,10 +18,14 @@ class CtrlEquipe {
 
     public function showEquipe($idEquipe) {
         $joueurs = $this->joueurs->getJoueurs($idEquipe);
+        $nbJoueurs = $this->equipe->nbJoueurs();
+
         $vue = new Vue("Joueur");
         $vue->generer(array(
             'joueurs' => $joueurs,
+            'nbJoueurs' => $nbJoueurs,
         ));
+
     }
 
     public function equipeForm() {

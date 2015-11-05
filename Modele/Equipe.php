@@ -4,6 +4,7 @@ require_once 'Modele.php';
 
 class Equipe extends Modele {
 
+    public static  $nbJoueursMax = 23;
     private $nom;
     private $ecusson;
 
@@ -41,19 +42,21 @@ class Equipe extends Modele {
 
     public function getEquipes()
     {
-        $sql = 'SELECT id_equipe, nom FROM equipe ORDER BY id_equipe ASC ';
+        $sql = 'SELECT id_equipe, nom FROM equipe ORDER BY nom DESC ';
         $equipes = $this->exeReq($sql);
         return $equipes;
     }
 
     /**
-     *  Trouver comment effectuer le compte sur une seul et mm equipe
+     *  ID present dans l'url
      */
-    public function nbJoueur($idEquipe)
+    public function nbJoueurs()
     {
-        $sql = 'SELECT COUNT(id_joueur) FROM joueur WHERE id_equipe = '.$_GET[$idEquipe];
-        $nbjoueur = $this->exeReq($sql, array($idEquipe));
-        return $nbjoueur;
+        $sql = 'SELECT COUNT(id_joueur) FROM joueur WHERE id_equipe = '.$_GET['id'];
+        $nb = $this->exeReq($sql);
+        $nbJoueur = $nb->fetch();
+
+        return $nbJoueur;
     }
 
     public function addEquipe($nomEquipe)
