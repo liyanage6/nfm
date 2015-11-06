@@ -106,7 +106,7 @@ class Joueur extends Modele {
         $this->tituRempl = $tituRempl;
     }
 
-    public function getJoueurs($idEquipe)
+    public function getPlayers($idEquipe)
     {
         $sql = 'SELECT id_joueur, id_equipe, nom, poste, attaque, milieu, defense, tituRempl FROM joueur WHERE id_equipe='.$_GET['id'];
         $joueur = $this->exeReq($sql, array($idEquipe));
@@ -123,9 +123,10 @@ class Joueur extends Modele {
         return $playerName;
     }
 
-    public function addJoueur($nomJoueur, $id_equipe, $poste, $attaque, $milieu, $defense, $tituRempl )
+    public function addPlayer($nomJoueur, $id_equipe, $poste, $attaque, $milieu, $defense, $tituRempl)
     {
-        $sql = 'INSERT INTO joueur (nom, id_equipe, poste, attaque, milieu, defense, tituRempl) VALUES (:nom, :id_equipe, :poste,:attaque, :milieu, :defense, :tituRempl) ';
+        $sql = 'INSERT INTO joueur (nom, id_equipe, poste, attaque, milieu, defense, tituRempl) VALUES (:nom, :id_equipe,
+:poste,:attaque, :milieu, :defense, :tituRempl';
         $this->exeReq($sql,array(
             ':nom'        => $nomJoueur,
             ':id_equipe'  => $id_equipe,
@@ -137,7 +138,8 @@ class Joueur extends Modele {
         ));
     }
 
-    public function nbJoueursForm()
+
+    public function nbPlayersForm()
     {
         $sql = 'SELECT COUNT(id_joueur) FROM joueur WHERE id_equipe = '.$_POST['id_equipe'];
         $nb = $this->exeReq($sql);
@@ -146,12 +148,22 @@ class Joueur extends Modele {
         return $nbJoueursForm[0];
     }
 
-    public function getCountAllPlayer()
+    public function countAllPlayer()
     {
         $sql = 'SELECT COUNT(id_joueur) FROM joueur';
         $gap = $this->exeReq($sql);
         $allPlayer = $gap->fetch();
         return $allPlayer[0];
+    }
+
+    public function getAllPlayers()
+    {
+        $sql = 'SELECT * FROM joueur';
+        $gap = $this->exeReq($sql);
+        $allPlayers = $gap->fetchAll();
+
+        //print'<pre>';print_r($allPlayers);print'</pre>';
+        return $allPlayers;
     }
 
 }

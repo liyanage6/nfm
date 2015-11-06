@@ -14,7 +14,7 @@ class CtrlAccueil {
     }
 
     public function accueil() {
-        $equipes = $this->equipe->getEquipes();
+        $equipes = $this->equipe->getTeams();
         $vue = new Vue("Accueil");
         $vue->generer(array('equipes' => $equipes));
     }

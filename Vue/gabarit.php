@@ -26,7 +26,7 @@
             <div id="contenu">
                 <?= $contenu ?>
             </div>
-            <footer id="piedBlog">
+            <footer id="piedDePage">
                 Site réalisé avec PHP, HTML5 et CSS.
             </footer>
         </div>

@@ -3,17 +3,23 @@
 require_once 'CtrlAccueil.php';
 require_once 'CtrlEquipe.php';
 require_once 'CtrlJoueur.php';
+require_once 'CtrlExchangePlayer.php';
+require_once 'CtrlMatch.php';
 
 class Router
 {
     private $ctrlAccueil;
     private $ctrlEquipe;
     private $ctrlJoueur;
+    private $ctrlExchangePlayer;
+    private $ctrlMatch;
 
     public function __construct() {
         $this->ctrlAccueil = new CtrlAccueil();
         $this->ctrlEquipe = new CtrlEquipe();
         $this->ctrlJoueur = new CtrlJoueur();
+        $this->ctrlExchangePlayer = new CtrlExchangePlayer();
+        $this->ctrlMatch = new CtrlMatch();
     }
 
     public function routeRequete() {
@@ -23,7 +29,7 @@ class Router
                     if (isset($_GET['id'])) {
                         $idEquipe = intval($_GET['id']);
                         if ($idEquipe != 0) {
-                            $this->ctrlEquipe->showEquipe($idEquipe);
+                            $this->ctrlEquipe->showTeam($idEquipe);
                         }
                         else {
                             throw new Exception("Id de l'equipe est incorrète");
@@ -35,19 +41,17 @@ class Router
                 }
                 elseif ($_GET['action'] == 'addEquipe')
                 {
-                    $this->ctrlEquipe->equipeForm();
-
-
+                    $this->ctrlEquipe->teamForm();
                 }
                 elseif ($_GET['action'] == 'addE')
                 {
                     $nomEquipe = $this->getParameter($_POST, 'nomEquipe');
-                    $this->ctrlEquipe->addE($nomEquipe);
+                    $this->ctrlEquipe->addT($nomEquipe);
                 }
 
                 elseif ($_GET['action'] == 'addJoueur')
                 {
-                    $this->ctrlJoueur->joueurForm();
+                    $this->ctrlJoueur->playerForm();
                 }
                 elseif ($_GET['action'] == 'addJ')
                 {
@@ -58,7 +62,15 @@ class Router
                     $milieu = $this->getParameter($_POST, 'milieu');
                     $defense = $this->getParameter($_POST, 'defense');
                     $tituRempl = $this->getParameter($_POST, 'tituRempl');
-                    $this->ctrlJoueur->addJ($nomJoueur, $club, $poste, $attaque, $milieu, $defense, $tituRempl);
+                    $this->ctrlJoueur->addP($nomJoueur, $club, $poste, $attaque, $milieu, $defense, $tituRempl);
+                }
+                elseif ($_GET['action'] == 'echange')
+                {
+                    $this->ctrlExchangePlayer->playerExchange();
+                }
+                elseif ($_GET['action'] == 'match')
+                {
+                    $this->ctrlMatch->match();
                 }
 
             }

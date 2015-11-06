@@ -16,9 +16,9 @@ class CtrlEquipe {
         $this->joueurs = new Joueur();
     }
 
-    public function showEquipe($idEquipe) {
-        $joueurs = $this->joueurs->getJoueurs($idEquipe);
-        $nbJoueurs = $this->equipe->nbJoueurs();
+    public function showTeam($idEquipe) {
+        $joueurs = $this->joueurs->getPlayers($idEquipe);
+        $nbJoueurs = $this->equipe->nbPlayers();
 
         $vue = new Vue("Joueur");
         $vue->generer(array(
@@ -28,14 +28,22 @@ class CtrlEquipe {
 
     }
 
-    public function equipeForm() {
+    public function teamForm() {
         $vue = new Vue("AddEquipe");
         $vue->generer(array());
     }
 
-    public function addE($nomEquipe) {
-        $this->newEquipe->addEquipe($nomEquipe);
-        $equipes = $this->equipe->getEquipes();
+    public function addT($nomEquipe) {
+        $team = $this->equipe->getTeamName();
+        $nbTeam = $this->equipe->countAllTeam();
+
+        for($i=0; $i<$nbTeam; $i++){
+            if ($team[$i]['nom'] == $_POST['nomEquipe']){
+                throw new Exception('Tu es fou même !');
+            }
+        }
+        $this->newEquipe->addTeam($nomEquipe);
+        $equipes = $this->equipe->getTeams();
         $vue = new Vue("Accueil");
         $vue->generer(array('equipes' => $equipes));
     }

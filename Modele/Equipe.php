@@ -40,7 +40,7 @@ class Equipe extends Modele {
         $this->ecusson = $ecusson;
     }
 
-    public function getEquipes()
+    public function getTeams()
     {
         $sql = 'SELECT id_equipe, nom FROM equipe ORDER BY nom DESC ';
         $equipes = $this->exeReq($sql);
@@ -50,7 +50,7 @@ class Equipe extends Modele {
     /**
      *  ID present dans l'url
      */
-    public function nbJoueurs()
+    public function nbPlayers()
     {
         $sql = 'SELECT COUNT(id_joueur) FROM joueur WHERE id_equipe = '.$_GET['id'];
         $nb = $this->exeReq($sql);
@@ -59,10 +59,28 @@ class Equipe extends Modele {
         return $nbJoueur;
     }
 
-    public function addEquipe($nomEquipe)
+    public function addTeam($nomEquipe)
     {
         $sql = 'INSERT INTO equipe (nom) VALUES (?)';
         $this->exeReq($sql, array($nomEquipe));
+    }
+
+    public function getTeamName()
+    {
+        $sql = 'SELECT nom FROM equipe';
+        $j = $this->exeReq($sql);
+        $teamName= $j->fetchAll();
+        //var_dump($teamName);
+        return $teamName;
+    }
+
+    public function countAllTeam()
+    {
+        $sql = 'SELECT COUNT(id_equipe) FROM equipe';
+        $countTeam = $this->exeReq($sql);
+        $countTeam->fetch();
+
+        return $countTeam;
     }
 
 }

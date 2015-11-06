@@ -1,5 +1,7 @@
 <?php $this->titre = 'Equipes'; ?>
 
+<a href="?action=match">Lancer un match</a>
+
 <?php foreach ($equipes as $equipe): ?>
     <article>
         <header>
