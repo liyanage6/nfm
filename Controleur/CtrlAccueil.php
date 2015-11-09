@@ -5,18 +5,18 @@ require_once 'Vue/Vue.php';
 
 class CtrlAccueil {
 
-    private $equipe;
+    private $team;
     private $newEquipe;
 
     public function __construct() {
-        $this->equipe = new Equipe();
+        $this->team = new Equipe();
         $this->newEquipe = new Equipe();
     }
 
     public function accueil() {
-        $equipes = $this->equipe->getTeams();
+        $teams = $this->team->getTeams();
         $vue = new Vue("Accueil");
-        $vue->generer(array('equipes' => $equipes));
+        $vue->generer(array('teams' => $teams));
     }
 
 }

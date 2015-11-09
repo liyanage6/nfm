@@ -1,3 +1,5 @@
+A mettre a jour (Imcoplet)
+
 CREATE TABLE `joueur` (
 	`id_joueur` INT(3) NOT NULL AUTO_INCREMENT,
   `id_equipe` INT(4) NOT NULL,

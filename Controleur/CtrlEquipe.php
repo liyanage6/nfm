@@ -16,14 +16,16 @@ class CtrlEquipe {
         $this->joueurs = new Joueur();
     }
 
-    public function showTeam($idEquipe) {
-        $joueurs = $this->joueurs->getPlayers($idEquipe);
+    public function showTeam($idTeam) {
+        $joueurs = $this->joueurs->getPlayers($idTeam);
         $nbJoueurs = $this->equipe->nbPlayers();
+        $teamName = $this->equipe->getTeamNameById($idTeam);
 
         $vue = new Vue("Joueur");
         $vue->generer(array(
             'joueurs' => $joueurs,
             'nbJoueurs' => $nbJoueurs,
+            'teamName' => $teamName,
         ));
 
     }
@@ -39,7 +41,7 @@ class CtrlEquipe {
 
         for($i=0; $i<$nbTeam; $i++){
             if ($team[$i]['nom'] == $_POST['nomEquipe']){
-                throw new Exception('Tu es fou même !');
+                throw new Exception('Cette equipe déja !');
             }
         }
         $this->newEquipe->addTeam($nomEquipe);

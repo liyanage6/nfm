@@ -1,6 +1,6 @@
 <?php $this->titre = "Joueur"; ?>
 
-<form method="post" action="?action=addJ" enctype="multipart/form-data">
+<form method="post" action="?action=addP" enctype="multipart/form-data">
     <legend>Ajouter un joueur:</legend>
 
     <label>Nom</label>

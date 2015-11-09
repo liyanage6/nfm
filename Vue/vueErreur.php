@@ -1,3 +1,3 @@
-<?php $this->titre = "NFM"; ?>
+<?php $this->titre = "Erreur"; ?>
 
-<p>Une erreur est survenue : <?= $msgErreur ?></p>
+<p style="font-weight: bold">Une erreur est survenue : <?= $msgErreur ?></p>

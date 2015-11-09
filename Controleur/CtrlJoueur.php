@@ -40,9 +40,11 @@ class CtrlJoueur {
         }
         else{
             $this->newJoueur->addPlayer($nom, $id_equipe, $poste, $attaque, $milieu, $defense, $tituRempl);
-            $equipes = $this->equipe->getTeams();
+            $teams = $this->equipe->getTeams();
             $vue = new Vue("Accueil");
-            $vue->generer(array('equipes' => $equipes));
+            $vue->generer(array(
+                'teams' => $teams
+            ));
         }
     }
 }

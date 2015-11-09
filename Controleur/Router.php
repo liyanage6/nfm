@@ -27,9 +27,9 @@ class Router
             if (isset($_GET['action'])) {
                 if ($_GET['action'] == 'showEquipe') {
                     if (isset($_GET['id'])) {
-                        $idEquipe = intval($_GET['id']);
-                        if ($idEquipe != 0) {
-                            $this->ctrlEquipe->showTeam($idEquipe);
+                        $idTeam= intval($_GET['id']);
+                        if ($idTeam != 0) {
+                            $this->ctrlEquipe->showTeam($idTeam);
                         }
                         else {
                             throw new Exception("Id de l'equipe est incorrète");
@@ -53,7 +53,7 @@ class Router
                 {
                     $this->ctrlJoueur->playerForm();
                 }
-                elseif ($_GET['action'] == 'addJ')
+                elseif ($_GET['action'] == 'addP')
                 {
                     $nomJoueur = $this->getParameter($_POST, 'nomJoueur');
                     $club = $this->getParameter($_POST, 'id_equipe');
@@ -70,11 +70,17 @@ class Router
                 }
                 elseif ($_GET['action'] == 'match')
                 {
-                    $this->ctrlMatch->match();
+                    $this->ctrlMatch->matchForm();
                 }
-
+                elseif ($_GET['action'] == 'playMatch')
+                {
+                    $team1 = $this->getParameter($_POST, 'team1');
+                    $team2 = $this->getParameter($_POST, 'team2');
+                    $this->ctrlMatch->playMatch($team1, $team2);
+                }
             }
-            else {
+            else
+            {
                 $this->ctrlAccueil->accueil();
             }
         }

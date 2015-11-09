@@ -18,7 +18,7 @@
                 <li><a href="<?= "index.php?action=addJoueur" ?>">Ajouter un joueur</a></li>
             </ul>
         </div>
-        <div id="content" class="col-md-9">
+        <div id="content" class="col-md-6">
             <header>
                 <h1><?= $titre ?></h1>
                 <p>Bienvenue sur football manager low-cost.</p>

@@ -9,6 +9,7 @@ class Joueur extends Modele {
     private $milieu;
     private $defense;
     private $tituRempl;
+    private $avg;
 
     /**
      * @return mixed
@@ -108,7 +109,7 @@ class Joueur extends Modele {
 
     public function getPlayers($idEquipe)
     {
-        $sql = 'SELECT id_joueur, id_equipe, nom, poste, attaque, milieu, defense, tituRempl FROM joueur WHERE id_equipe='.$_GET['id'];
+        $sql = 'SELECT id_joueur, id_equipe, nom, poste, attaque, milieu, defense, tituRempl, avgPlayer FROM joueur WHERE id_equipe='.$_GET['id'];
         $joueur = $this->exeReq($sql, array($idEquipe));
 
         return $joueur;
@@ -125,8 +126,35 @@ class Joueur extends Modele {
 
     public function addPlayer($nomJoueur, $id_equipe, $poste, $attaque, $milieu, $defense, $tituRempl)
     {
-        $sql = 'INSERT INTO joueur (nom, id_equipe, poste, attaque, milieu, defense, tituRempl) VALUES (:nom, :id_equipe,
-:poste,:attaque, :milieu, :defense, :tituRempl';
+        if($poste == 'Attaquant')
+        {
+            $avg = ($attaque*2 + $milieu + $defense)/3;
+            if($avg >= 100)
+            {
+                throw new Exception('Ce joueur est un extraterrestre, veuillez recommencer svp.');
+            }
+        }
+        elseif ( $poste == 'Milieu')
+        {
+            $avg = ($attaque + $milieu*2 + $defense)/3;
+            if($avg >= 100)
+            {
+                throw new Exception('Ce joueur est un extraterrestre, veuillez recommencer svp.');
+            }
+        }
+        elseif ($poste == 'Defense')
+        {
+            $avg = ($attaque + $milieu + $defense*2)/3;
+            if($avg >= 100)
+            {
+                throw new Exception('Ce joueur est un extraterrestre, veuillez recommencer svp.');
+            }
+        }
+        else{
+            throw new Exception('Ce poste n\'existe pas');
+        }
+
+        $sql = 'INSERT INTO joueur (nom, id_equipe, poste, attaque, milieu, defense, tituRempl, avgPlayer) VALUES (:nom, :id_equipe, :poste,:attaque, :milieu, :defense, :tituRempl, :avgPlayer)';
         $this->exeReq($sql,array(
             ':nom'        => $nomJoueur,
             ':id_equipe'  => $id_equipe,
@@ -135,9 +163,9 @@ class Joueur extends Modele {
             ':milieu'     => $milieu,
             ':defense'    => $defense,
             ':tituRempl'  => $tituRempl,
+            ':avgPlayer'  => $avg,
         ));
     }
-
 
     public function nbPlayersForm()
     {
@@ -164,6 +192,11 @@ class Joueur extends Modele {
 
         //print'<pre>';print_r($allPlayers);print'</pre>';
         return $allPlayers;
+    }
+
+    public function avgTeam()
+    {
+
     }
 
 }

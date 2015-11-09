@@ -2,11 +2,11 @@
 
 <a href="?action=match">Lancer un match</a>
 
-<?php foreach ($equipes as $equipe): ?>
+<?php foreach ($teams as $team): ?>
     <article>
         <header>
-            <a href="<?= "index.php?action=showEquipe&id=".$equipe['id_equipe'] ?>">
-               <h2 class=""><?= $equipe['nom'] ?></h2>
+            <a href="<?= "index.php?action=showEquipe&id=".$team['id_equipe'] ?>">
+               <h2 class=""><?= $team['nom'] ?></h2>
             </a>
         </header>
     </article>
