@@ -7,6 +7,7 @@
         <header>
             <h3 class=""><?= $joueur['nom'] ?>  <a href="<?= "?action=echange&idJoueur=".$joueur['id_joueur']."&idEquipe=".$joueur['id_equipe'] ?>"><=></a></h3>
 
+            <p>Status : <?php if($joueur['tituRempl'] == 1){echo'Titulaire';}else{echo"Remplaçant";} ?></p>
             <p>Poste : <?= $joueur['poste'] ?></p>
             <p>Moyenne : <?= $joueur['avgPlayer'] ?></p>
             <p>Attaque : <?= $joueur['attaque'] ?></p>

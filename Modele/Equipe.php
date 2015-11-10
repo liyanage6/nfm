@@ -42,7 +42,7 @@ class Equipe extends Modele {
 
     public function getTeams()
     {
-        $sql = 'SELECT id_equipe, nom FROM equipe ORDER BY nom ASC ';
+        $sql = 'SELECT * FROM equipe ORDER BY nom ASC ';
         $equipes = $this->exeReq($sql);
         return $equipes;
     }
@@ -86,8 +86,7 @@ class Equipe extends Modele {
     public function countAllTeam()
     {
         $sql = 'SELECT COUNT(id_equipe) FROM equipe';
-        $countTeam = $this->exeReq($sql);
-        $countTeam->fetch();
+        $countTeam = $this->exeReq($sql)->fetch();
 
         return $countTeam;
     }
@@ -100,5 +99,24 @@ class Equipe extends Modele {
 
         return $teamName;
     }
+
+    public function getTeamOneNameForMatch()
+    {
+        $sql = 'SELECT nom FROM equipe WHERE id_equipe = '.$_POST['team1'];
+        $tn = $this->exeReq($sql,array());
+        $teamName = $tn->fetch();
+
+        return $teamName;
+    }
+
+    public function getTeamTwoNameForMatch()
+    {
+        $sql = 'SELECT nom FROM equipe WHERE id_equipe = '.$_POST['team2'];
+        $tn = $this->exeReq($sql,array());
+        $teamName = $tn->fetch();
+
+        return $teamName;
+    }
+
 
 }

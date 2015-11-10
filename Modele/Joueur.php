@@ -9,7 +9,6 @@ class Joueur extends Modele {
     private $milieu;
     private $defense;
     private $tituRempl;
-    private $avg;
 
     /**
      * @return mixed
@@ -194,9 +193,22 @@ class Joueur extends Modele {
         return $allPlayers;
     }
 
-    public function avgTeam()
+    public function avgTeam1()
     {
+        $sql ='SELECT AVG(avgPlayer) FROM joueur WHERE tituRempl = 1 AND id_equipe ='.$_POST['team1'] ;
+        $avg = $this->exeReq($sql);
+        $avgT = $avg->fetch();
 
+        return $avgT;
+    }
+
+    public function avgTeam2()
+    {
+        $sql ='SELECT AVG(avgPlayer) FROM joueur WHERE tituRempl = 1 AND id_equipe ='.$_POST['team2'];
+        $avg = $this->exeReq($sql);
+        $avgT = $avg->fetch();
+
+        return $avgT;
     }
 
 }

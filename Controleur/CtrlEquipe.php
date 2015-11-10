@@ -39,15 +39,15 @@ class CtrlEquipe {
         $team = $this->equipe->getTeamName();
         $nbTeam = $this->equipe->countAllTeam();
 
-        for($i=0; $i<$nbTeam; $i++){
+        for($i=0; $i<$nbTeam[0]; $i++){
             if ($team[$i]['nom'] == $_POST['nomEquipe']){
-                throw new Exception('Cette equipe déja !');
+                throw new Exception('Cette equipe existe déja !');
             }
         }
         $this->newEquipe->addTeam($nomEquipe);
-        $equipes = $this->equipe->getTeams();
+        $teams = $this->equipe->getTeams();
         $vue = new Vue("Accueil");
-        $vue->generer(array('equipes' => $equipes));
+        $vue->generer(array('teams' => $teams));
     }
 }
 

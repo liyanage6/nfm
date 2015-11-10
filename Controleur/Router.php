@@ -43,7 +43,7 @@ class Router
                 {
                     $this->ctrlEquipe->teamForm();
                 }
-                elseif ($_GET['action'] == 'addE')
+                elseif ($_GET['action'] == 'addT')
                 {
                     $nomEquipe = $this->getParameter($_POST, 'nomEquipe');
                     $this->ctrlEquipe->addT($nomEquipe);
@@ -74,9 +74,9 @@ class Router
                 }
                 elseif ($_GET['action'] == 'playMatch')
                 {
-                    $team1 = $this->getParameter($_POST, 'team1');
-                    $team2 = $this->getParameter($_POST, 'team2');
-                    $this->ctrlMatch->playMatch($team1, $team2);
+                    $teamMatch1 = $this->getParameter($_POST, 'team1');
+                    $teamMatch2 = $this->getParameter($_POST, 'team2');
+                    $this->ctrlMatch->playMatch($teamMatch1, $teamMatch2);
                 }
             }
             else
